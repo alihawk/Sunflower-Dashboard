@@ -1,0 +1,274 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: 'DM Sans', sans-serif;
+}
+
+.recharts-default-legend {
+    color: black;
+}
+
+.selection-title,
+.selection-container h1 {
+    font-family: 'DM Serif Display', serif;
+    text-align: center;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    color: #1b5155;
+}
+
+
+
+.slider-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.opacity-label,
+.slider-label {
+    font-size: 1.2rem;
+    color: #4a5568;
+    margin-bottom: 0.5rem;
+}
+
+.opacity-slider-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    background-color: rgba(255, 255, 255, 0.6);
+    padding: 1rem;
+    border-radius: 10px;
+}
+
+
+.slider-container {
+    position: fixed;
+    bottom: 50px;
+    /* Adjust as needed */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    display: flex;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.8rem;
+    color: black;
+    flex-direction: row;
+    /* Changed to row */
+    justify-content: space-around;
+    /* Distribute equal space around items */
+    flex-wrap: wrap;
+    /* Wrap items if they don't fit */
+    max-width: 90%;
+    /* Set a max-width for responsiveness */
+    gap: 1rem;
+    padding: 1rem;
+    /* Added some padding */
+    background-color: rgba(255, 255, 255, 0.9);
+    /* Optional: Added a semi-transparent black background for better visibility */
+    border-radius: 10px;
+    /* Optional: Added some border radius */
+}
+
+.slider-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.slider-label {
+    font-size: 1.2rem;
+    color: #4a5568;
+    margin-bottom: 0.5rem;
+}
+
+.range-input {
+    width: 80%;
+    height: 2px;
+    background-color: #031312;
+    border-radius: 5px;
+    appearance: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.range-input::-webkit-slider-thumb {
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    background-color: #4a5568;
+    border-radius: 50%;
+}
+
+.selection-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    min-height: 100vh;
+    padding: 2rem;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    box-shadow: 0px 6px 16px 0px rgba(0, 0, 0, 0.1);
+}
+
+.selection-inner-container {
+    width: 80%;
+    max-width: 800px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    background-color: #f9f9f9;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.crop-logo {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+
+    object-fit: contain;
+    margin-bottom: 2px;
+}
+
+
+.logo {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+
+    object-fit: contain;
+}
+
+.animated-button {
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    border-radius: 20px;
+    height: 150px;
+    width: 200px;
+    display: flex;
+    text-transform: none;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.2rem;
+    align-items: center;
+    justify-content: center;
+    background-color: #bac9bb;
+    color: rgb(53, 54, 53);
+
+    flex-direction: column;
+
+    padding: 20px;
+    text-align: center;
+
+}
+
+.animated-button:hover {
+    background-color: #58946b;
+    transform: scale(1.1);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.animated-button:active {
+    transform: translateY(-1px);
+}
+
+.selection-subtitle {
+    text-align: center;
+    font-family: 'DM Sans', sans-serif;
+    margin-bottom: 1rem;
+    color: #1b5155;
+}
+
+.confirmButton {
+    background-color: #adac65;
+}
+
+.card-container {
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+    border-radius: 12px;
+}
+
+.card-container:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+h4,
+h5 {
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
+
+.weather-widget,
+.humidity-widget,
+.uvindex-widget,
+.health-widget,
+.headcount-widget,
+.soil-moisture-widget,
+.card {
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    color: black;
+    font-family: 'DM Sans', sans-serif;
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+.selectCards {
+    background-color: rgba(255, 255, 255, 0.9);
+    color: black;
+    font-family: 'DM Serif Display', serif;
+}
+
+.mainHeadingText {
+    color: black;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: bold;
+    font-size: larger;
+}
+
+.dateLayerbox {
+    background-color: rgba(255, 255, 255, 0.9);
+    color: black;
+    font-family: 'DM Serif Display', serif;
+    border-radius: 8px;
+    /* adjust this value to your liking */
+}
+
+.zoom-button {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: bold;
+    font-size: larger;
+    color: white;
+    background-color: rgb(88, 89, 90);
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+}
+
+.texts-slider {
+    color: black;
+}
+
+.custom-card {
+    background-color: rgb(0, 0, 0/var(--tw-bg-opacity)) !important;
+}
+
+.fa-icon {
+    margin-bottom: 10px;
+}
