@@ -19,13 +19,10 @@ import Watermark from '../../components/Watermark';
 import droneimageReal from "../../components/DroneImageReal";
 
 const DynamicLineChart = dynamic(
-  () => import("../../components/Charts/LineChart"),
+  () => import("../../components/Charts/Linechart"),
   { ssr: false }
 );
-const DynamicBarChart = dynamic(
-  () => import("../../components/Charts/BarChart"),
-  { ssr: false }
-);
+
 const wait = () => {
   const [selectedIndex, setSelectedIndex] = useState(0);
   // Default to RGB layer (index 0)
