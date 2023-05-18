@@ -18,6 +18,9 @@ export default function Analysis() {
     const [weather, setWeather] = useState('');
     const [loading, setLoading] = useState(false);
     const [selectedDate, setSelectedDate] = useState('');
+    const [averageNumberOfSeedsPerHead, setAverageNumberOfSeedsPerHead] = useState('');
+    const [averageWeightOfOneSeed, setAverageWeightOfOneSeed] = useState('');
+    const [averageSeedWeightPerHead, setAverageSeedWeightPerHead] = useState('');
 
     const [uvIndex, setUvIndex] = useState('');
     const [humidityLevel, setHumidityLevel] = useState('');
@@ -34,7 +37,6 @@ export default function Analysis() {
         setLoading(true);
         setTimeout(() => {
             const imageName = selectedImageFile.name;
-            console.log(`Image name: ${imageName}`)
             router.push({
                 pathname: '/analyzed',
                 query: {
@@ -46,18 +48,17 @@ export default function Analysis() {
                     latitude: latitude,
                     cropHealth: cropHealth,
                     soilMoisture: soilMoisture,
-                    weather: weather,
-                    uvIndex: uvIndex,
-                    humidityLevel: humidityLevel,
+                    averageNumberOfSeedsPerHead: averageNumberOfSeedsPerHead,
+                    averageWeightOfOneSeed: averageWeightOfOneSeed,
+                    averageSeedWeightPerHead: averageSeedWeightPerHead,
                     confidenceThreshold: confidenceThreshold,
                     imageName: imageName,
-                    date: selectedDate, // add the date here
+                    date: selectedDate,
                 },
             });
             setLoading(false);
         }, 5000); // Wait for 5 seconds
     };
-
     return (
         <>
             <Watermark />
@@ -123,17 +124,17 @@ export default function Analysis() {
                             </div>
                             <div className="input-row">
                                 <div className="input-field">
-                                    <label>Weather</label>
-                                    <input value={weather} onChange={e => setWeather(e.target.value)} placeholder="Enter Weather" />
+                                    <label>Average Number of Seeds per Head</label>
+                                    <input type="number" value={averageNumberOfSeedsPerHead} onChange={e => setAverageNumberOfSeedsPerHead(e.target.value)} placeholder="Enter Average Number of Seeds per Head" />
                                 </div>
                                 <div className="input-field">
-                                    <label>UV Index: {uvIndex}</label>
-                                    <input type="range" min="0" max="15" value={uvIndex} onChange={e => setUvIndex(e.target.value)} />
+                                    <label>Average Weight of One Seed</label>
+                                    <input type="number" value={averageWeightOfOneSeed} onChange={e => setAverageWeightOfOneSeed(e.target.value)} placeholder="Enter Average Weight of One Seed" />
                                 </div>
                             </div>
                             <div className="input-row">
                                 <div className="input-field">
-                                    <label>Humidity Level: {humidityLevel}%</label>
+                                    <label>Shelling Percentage(P): {humidityLevel}%</label>
                                     <input type="range" min="0" max="100" value={humidityLevel} onChange={e => setHumidityLevel(e.target.value)} />
                                 </div>
                                 {/* New input field */}

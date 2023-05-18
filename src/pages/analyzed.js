@@ -8,7 +8,7 @@ import Image from 'next/image';
 
 export default function Analyzed() {
     const router = useRouter();
-    const { crop, year, city, location, longitude, latitude, cropHealth, soilMoisture, weather, uvIndex, humidityLevel, confidenceThreshold, imageName, date } = router.query;
+    const { crop, year, city, location, longitude, latitude, cropHealth, soilMoisture, averageNumberOfSeedsPerHead, averageWeightOfOneSeed, averageSeedWeightPerHead, confidenceThreshold, imageName, date } = router.query;
 
     const [modalOpen, setModalOpen] = useState(false);
     const [openSnackbar, setOpenSnackbar] = useState(false);
@@ -78,14 +78,15 @@ export default function Analyzed() {
                             <Typography className="analysis-field"><b>Latitude:</b> {latitude}</Typography>
                             <Typography className="analysis-field"><b>Crop Health:</b> {cropHealth}</Typography>
                             <Typography className="analysis-field"><b>Soil Moisture:</b> {soilMoisture}</Typography>
-                            <Typography className="analysis-field"><b>Weather:</b> {weather}</Typography>
-                            <Typography className="analysis-field"><b>UV Index:</b> {uvIndex}</Typography>
-                            <Typography className="analysis-field"><b>Humidity Level:</b> {humidityLevel}</Typography>
+                            <Typography className="analysis-field"><b>Average Number of Seeds per Head:</b> {averageNumberOfSeedsPerHead}</Typography>
+                            <Typography className="analysis-field"><b>Average Weight of One Seed:</b> {averageWeightOfOneSeed}</Typography>
+
+                            <Typography className="analysis-field"><b>P(Shelling Percentage):</b> 76</Typography>
                             <Typography className="analysis-field"><b>Confidence Threshold:</b> {confidenceThreshold}</Typography>
                         </div>
 
                         <Typography className="analysis-heading">Analysis</Typography>
-                        <Typography className="analysis-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec aliquam dictum lacus quis tincidunt. Phasellus a semper                        sem. Duis nec eros urna.</Typography>
+                        <Typography className="analysis-text">The estimated seed yield for the chosen date is ${estimatedYield} kg/ha. This is based on the current head count of ${headCount}, suggesting a high yield potential. Further supporting this potential is the robust growth pattern indicated by the average weight of one seed ${averageWeightOfOneSeed} With an estimated maturity date of 2023-03-12, we can expect the plants to continue their healthy development, provided current environmental conditions remain favorable. The measured oil content of 23% is within the expected range, further indicating the crop's health and potential profitability.</Typography>
 
                         <Typography className="analysis-heading"><b>Head Count:</b> {headCount}</Typography>
                         <Typography className="analysis-heading"><b>Estimated Yield:</b> {estimatedYield} tons per hecta acre</Typography>
