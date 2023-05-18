@@ -1,10 +1,7 @@
-import { MapContainer, TileLayer, ImageOverlay, Tooltip, Circle, useMap } from "react-leaflet";
+import { MapContainer, TileLayer, ImageOverlay, Tooltip, Circle, useMap, ZoomControl } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { useState, useRef, useEffect } from "react";
-
 import { Icon } from "leaflet";
-
-
 export default function Map({ selectedLayer, date, cropType }) {
   const [opacity, setOpacity] = useState(0.5);
   console.log(selectedLayer, date);
@@ -15,8 +12,18 @@ export default function Map({ selectedLayer, date, cropType }) {
     fillOpacity: 0.5,
     radius: 10,
   };
+  const baseMaps = [
+    { name: 'Satellite', url: 'http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', subdomains: ["mt0", "mt1", "mt2", "mt3"] },
+    { name: 'Streets', url: 'http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', subdomains: ["mt0", "mt1", "mt2", "mt3"] },
+    { name: 'OpenStreetMap', url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', subdomains: ['a', 'b', 'c'] },
+    { name: 'Esri', url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', subdomains: ['a', 'b', 'c', 'd'] },
+    { name: 'StamenWatercolor', url: 'https://stamen-tiles-{s}.a.ssl.fastly.net/watercolor/{z}/{x}/{y}.jpg', subdomains: ['a', 'b', 'c', 'd'] },
+  ];
 
-  function ZoomControl({ isZoomed, originalView, targetView }) {
+
+
+
+  function ZoomControler({ isZoomed, originalView, targetView }) {
     const map = useMap();
 
     useEffect(() => {
@@ -31,13 +38,14 @@ export default function Map({ selectedLayer, date, cropType }) {
     const value = parseFloat(event.target.value);
     setOpacity(value);
   };
+  const [baseMap, setBaseMap] = useState(baseMaps[0]);
+
   const [brightness, setBrightness] = useState(1);
   const [contrast, setContrast] = useState(1);
-  // const map = useMap();
-  const [originalView, setOriginalView] = useState({ center: [32.33925700144764, 72.5339985983349], zoom: 4 });
+  const [originalView, setOriginalView] = useState({ center: [33.6747400879386, 73.1333641295693], zoom: 4 });
+
+
   const [isZoomed, setIsZoomed] = useState(null);
-
-
   let overlayUrl, overlayBounds, overlayLegend;
   let markers = [];
   useEffect(() => {
@@ -48,38 +56,27 @@ export default function Map({ selectedLayer, date, cropType }) {
   }, [brightness, contrast, overlayRef]);
   // Ref to hold the map instance
   const mapRef = useRef();
-  // Function to handle zoom
-  // const handleZoom = () => {
-  //   const mapInstance = mapRef.current;
-  //   const targetView = isZoomed
-  //     ? originalView
-  //     : { center: overlayBounds[0], zoom: 18 };  // Update the center and zoom level as per your requirements
-
-  //   if (mapInstance) {
-  //     mapInstance.flyTo(targetView.center, targetView.zoom);
-  //   }
-
-  //   setIsZoomed(!isZoomed);
-  // };
 
   const handleZoom = () => {
     setIsZoomed(!isZoomed);
   };
 
-  // Set the appropriate overlay URL and bounds based on the selected date and layer
-  if (date === "2022-06-25" && cropType === "") {
+
+
+
+  if ((date === "2022-10-03" || date === "2023-05-19") && cropType === "") {
     overlayUrl = "mosaics/NDVI220625.png";
     overlayBounds = [
-      [32.33925700144764, 72.5339985983349],
-      [32.340393338283484, 72.53513116378589],
+      [33.6739078, 73.1278275],
+      [33.6750650, 73.1300267], // Change these according to the actual overlay boundaries
     ];
     markers = [
       {
-        position: [32.33955700154764, 72.5340985983349],
+        position: [32.53555700154764, 72.5340985983349],
         content: "Sunflower Field - 11",
       },
       {
-        position: [32.340193338283484, 72.53470116378589],
+        position: [32.980193338283484, 72.83470116378589],
         content: "Sunflower Field -23",
       },
     ];
@@ -90,7 +87,7 @@ export default function Map({ selectedLayer, date, cropType }) {
     } else {
       overlayLegend = "mosaics/NDVI220625legendmsavi.png";
     }
-  } else if (date === "2022-08-27" && cropType === "") {
+  } else if (date === "2022-10-28" && cropType === "") {
     overlayUrl = "mosaics/NDVI220827.png";
     overlayBounds = [
       [32.339026750942125, 72.53446255340462],
@@ -113,7 +110,7 @@ export default function Map({ selectedLayer, date, cropType }) {
     } else {
       overlayLegend = "mosaics/NDVI220827legendmsavi.png";
     }
-  } else if (date === "2022-07-06" && cropType === "") {
+  } else if (date === "2022-11-10" && cropType === "") {
     overlayUrl = "mosaics/NDVI220706.png";
     overlayBounds = [
       [32.34011086322847, 72.53823414753222],
@@ -137,7 +134,7 @@ export default function Map({ selectedLayer, date, cropType }) {
     } else {
       overlayLegend = "mosaics/NDVI220706legendmsavi.png";
     }
-  } else if (date === "2022-07-06" && cropType === "SK") {
+  } else if (date === "2023-03-05" && cropType === "") {
     overlayUrl = "mosaics/NDVI220706SK.png";
     overlayBounds = [
       [32.34011086322847, 72.53823414753222],
@@ -160,7 +157,7 @@ export default function Map({ selectedLayer, date, cropType }) {
     } else {
       overlayLegend = "mosaics/NDVI220706SKlegendmsavi.png";
     }
-  } else if (date === "2022-07-19" && cropType === "SK") {
+  } else if (date === "2023-03-28" && cropType === "") {
     overlayUrl = "mosaics/NDVI220719.png";
     overlayBounds = [
       [32.34011431725231, 72.53830831303031],
@@ -189,16 +186,6 @@ export default function Map({ selectedLayer, date, cropType }) {
       [32.340104538030566, 72.53827162640408],
       [32.341533679610755, 72.5394241987202],
     ];
-    // markers = [
-    //   {
-    //     position: [32.341004538030566, 72.53857162640408],
-    //     content: "Crop Type: Super Kernel - 15",
-    //   },
-    //   {
-    //     position: [32.341013679610755, 72.5390241987202],
-    //     content: "Crop Type: Super Kernel - 63",
-    //   },
-    // ];
     if (selectedLayer === "NDVI") {
       overlayLegend = "mosaics/NDVI220827SKlegend.png";
     } else if (selectedLayer === "SAVI") {
@@ -233,123 +220,143 @@ export default function Map({ selectedLayer, date, cropType }) {
       overlayLegend = "mosaics/NDVI220910legendmsavi.png";
     }
   }
-
   const handleBrightnessChange = (event) => {
     const value = parseFloat(event.target.value);
     setBrightness(value);
   };
-
   const handleContrastChange = (event) => {
     const value = parseFloat(event.target.value);
     setContrast(value);
   };
-
   console.log("The url and bounds are", overlayUrl, overlayBounds);
   return (
-    <div className="w-full h-80 shadow-xl relative">
+    <>
+      <div className="w-full h-80 shadow-xl relative">
 
-      <div className="absolute bottom-0 right-0 z-10">
-        {/* legend */}
-        {/* {overlayLegend && (
+        <div className="absolute bottom-0 right-0 z-10">
+          {/* legend */}
+          {/* {overlayLegend && (
           <img src={overlayLegend} alt="legend" className="h-50" />
         )} */}
-      </div>
-
-
-
-      <div className="slider-container bg-black">
-        <div className="slider-item">
-          <button onClick={handleZoom} className="zoom-button ">
-            {isZoomed ? 'Zoom Out' : 'Zoom In'}
-          </button>
         </div>
-        <div className="slider-item">
-          <label htmlFor="brightness-range" className="slider-label">
-            <b className=" texts-slider mainHeadingText">Brightness</b>
-          </label>
-          <input
-            id="brightness-range"
-            type="range"
-            min="0"
-            max="2"
-            step="0.01"
-            value={brightness}
-            onChange={handleBrightnessChange}
-            className="range-input"
-          />
-        </div>
-
-
-        <div className="slider-item">
-          <label htmlFor="contrast-range" className="slider-label">
-            <b className="  texts-slider mainHeadingText">Contrast</b>
-          </label>
-          <input
-            id="contrast-range"
-            type="range"
-            min="0"
-            max="2"
-            step="0.01"
-            value={contrast}
-            onChange={handleContrastChange}
-            className="range-input"
-          />
-        </div>
-        <div className="slider-item">
-          <label htmlFor="opacity-range" className="slider-label">
-            <b className=" texts-slider mainHeadingText"> Opacity</b>
-          </label>
-          <input
-            id="opacity-range"
-            type="range"
-            min="0"
-            max="1"
-            step="0.01"
-            value={opacity}
-            onChange={handleRangeChange}
-            className="range-input"
-          />
-        </div>
-      </div>
-
-      <div className="w-full h-full fixed top-0 left-0 z-0">
-        <MapContainer
-          center={[32.33925700144764, 72.5339985983349]}
-          zoom={4} // Change the initial zoom level here
-          style={{ height: "100%", width: "100%", zIndex: 0 }}
-          scrollWheelZoom={false}
-        >
-
-          {/* sattelite view */}
-          <TileLayer
-            url="http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}"
-            subdomains={["mt0", "mt1", "mt2", "mt3"]}
-            maxZoom={20}
-            tileSize={256}
-            attribution="&copy; Google"
-          />
-          {/* markers */}
-          {markers.map((marker, index) => (
-            <Circle key={index} center={marker.position} radius={2} color="white">
-              <Tooltip>{marker.content}</Tooltip>
-            </Circle>
-          ))}
-
-          {/* Render the selected overlay if is set */}
-
-          {overlayUrl && (
-
-            <ImageOverlay
-              ref={overlayRef}
-              url={overlayUrl}
-              bounds={overlayBounds}
-              opacity={opacity}
+        <div className="slider-container bg-black">
+          <div className="slider-item">
+            <button onClick={handleZoom} className="zoom-button ">
+              {isZoomed ? 'Zoom Out' : 'Zoom In'}
+            </button>
+          </div>
+          <div className="slider-item">
+            <label htmlFor="brightness-range" className="slider-label">
+              <b className=" texts-slider mainHeadingText">Brightness</b>
+            </label>
+            <input
+              id="brightness-range"
+              type="range"
+              min="0"
+              max="2"
+              step="0.01"
+              value={brightness}
+              onChange={handleBrightnessChange}
+              className="range-input"
             />
-          )}
-          <ZoomControl isZoomed={isZoomed} originalView={originalView} targetView={{ center: overlayBounds[0], zoom: 18 }} />
-        </MapContainer>
-      </div>
-    </div >
+          </div>
+
+
+          <div className="slider-item">
+            <label htmlFor="contrast-range" className="slider-label">
+              <b className="  texts-slider mainHeadingText">Contrast</b>
+            </label>
+            <input
+              id="contrast-range"
+              type="range"
+              min="0"
+              max="2"
+              step="0.01"
+              value={contrast}
+              onChange={handleContrastChange}
+              className="range-input"
+            />
+          </div>
+          <div className="slider-item">
+            <label htmlFor="opacity-range" className="slider-label">
+              <b className=" texts-slider mainHeadingText"> Opacity</b>
+            </label>
+            <input
+              id="opacity-range"
+              type="range"
+              min="0"
+              max="1"
+              step="0.01"
+              value={opacity}
+              onChange={handleRangeChange}
+              className="range-input"
+            />
+          </div>
+          <div className="slider-item">
+            <label htmlFor="baseMap-select" className="slider-label">
+              <b className="texts-slider mainHeadingText">Map</b>
+            </label>
+            <select
+              id="baseMap-select"
+              value={baseMap.name}
+              onChange={(event) => {
+                const selectedBaseMap = baseMaps.find((map) => map.name === event.target.value);
+                setBaseMap(selectedBaseMap);
+              }}
+              className="styled-select"
+            >
+              {baseMaps.map((map) => (
+                <option key={map.name} value={map.name}>
+                  {map.name}
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
+
+        <div className="w-full h-full fixed top-0 left-0 z-0">
+          <MapContainer
+            center={[32.33925700144764, 72.5339985983349]}
+            zoom={4} // Change the initial zoom level here
+            style={{ height: "100%", width: "100%", zIndex: 0 }}
+            scrollWheelZoom={false}
+            zoomControl={false} // disable default zoom control
+          >
+            <ZoomControl position="bottomleft" />
+
+            {/* sattelite view */}
+            <TileLayer
+              url={baseMap.url}
+              subdomains={baseMap.subdomains}
+              maxZoom={20}
+              tileSize={256}
+              attribution="&copy; Google"
+            />
+
+            {/* markers */}
+            {markers.map((marker, index) => (
+              <Circle key={index} center={marker.position} radius={2} color="white">
+                <Tooltip>{marker.content}</Tooltip>
+              </Circle>
+            ))}
+
+            {/* Render the selected overlay if is set */}
+
+            {overlayUrl && (
+
+              <ImageOverlay
+
+                ref={overlayRef}
+                url={overlayUrl}
+                bounds={overlayBounds}
+                opacity={opacity}
+              />
+            )}
+            <ZoomControler isZoomed={isZoomed} originalView={originalView} targetView={{ center: overlayBounds[0], zoom: 18 }} />
+          </MapContainer>
+        </div>
+      </div >
+    </>
   );
 }
 

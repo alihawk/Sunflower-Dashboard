@@ -4,7 +4,9 @@ import { styled } from '@mui/system';
 import { Typography } from '@mui/material';
 import { useSpring, animated } from 'react-spring';
 import Modal from 'react-modal';
-import Watermark from '../../components/Watermark'; 
+import Watermark from '../../components/Watermark';
+import MainLogoReal from '../../components/MainLogoReal';
+
 const Container = styled('div')(({ theme }) => ({
     display: 'flex',
     flexDirection: 'column',
@@ -73,7 +75,7 @@ export default function Visualized() {
     return (<><Watermark />
         <div className="selection-container">
             <div className="selection-inner-container">
-                <img src="https://w7.pngwing.com/pngs/441/849/png-transparent-common-sunflower-cartoon-drawing-blooming-sunflowers-poster-natural-sunflower.png" alt="logo" className="logo" />
+            <MainLogoReal  className="logo" />
                 <animated.div style={fadeIn}>
                     <Typography className="selection-title" variant="h4">Sunflower Dashboard</Typography>
                     <Typography className="selection-subtitle" variant="h6">Visualized Fields</Typography>
@@ -126,6 +128,6 @@ export default function Visualized() {
                 </animated.div>
             </div>
         </div>
-        </>
+    </>
     );
 }

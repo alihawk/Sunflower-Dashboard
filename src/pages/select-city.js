@@ -3,10 +3,10 @@ import { useSpring, animated } from 'react-spring';
 import { useRouter } from 'next/router';
 import { Card, CardContent, Grid, Typography, Box } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import mapImageReal from '../../components/mapImageReal';
+import MapImageReal from '../../components/mapImageReal';
 import Watermark from '../../components/Watermark';
-const mapImage = 'https://p7.hiclipart.com/preview/500/458/528/pakistan-vector-map-royalty-free-map.jpg';
-
+import MainLogoReal from '../../components/MainLogoReal';
+<MainLogoReal className="logo" />
 const cities = [
     'Lahore',
     'Islamabad',
@@ -53,7 +53,8 @@ const SelectCity = () => {
     return (<><Watermark />
         <div className="selection-container">
             <div className="selection-inner-container">
-                <img src="https://w7.pngwing.com/pngs/441/849/png-transparent-common-sunflower-cartoon-drawing-blooming-sunflowers-poster-natural-sunflower.png" alt="logo" className="logo" />
+                <MainLogoReal className="logo" />
+                {/* <img src="https://w7.pngwing.com/pngs/441/849/png-transparent-common-sunflower-cartoon-drawing-blooming-sunflowers-poster-natural-sunflower.png" alt="logo" className="logo" /> */}
                 <Typography className="selection-title" variant="h4" align="center" sx={{ fontFamily: 'DM Serif Display, serif' }}>Sunflower Dashboard</Typography>
                 <Typography className="selection-subtitle" variant="h5" align="center" gutterBottom sx={{ fontFamily: 'DM Sans', fontWeight: 'medium', textAlign: 'center' }}>
                     Please select a city to continue
@@ -63,11 +64,7 @@ const SelectCity = () => {
                     <Grid container spacing={2} justifyContent="center">
                         <Grid item xs={12} md={6}>
                             <MapCard>
-                                <img
-                                    src={mapImage}
-                                    alt="Map of Pakistan"
-                                    style={{ width: '100%', height: 'auto' }}
-                                />
+                                <MapImageReal />
                             </MapCard>
                         </Grid>
                         <Grid item xs={12} md={6}>
@@ -86,7 +83,7 @@ const SelectCity = () => {
                         </Grid>
                     </Grid>
                 </animated.div>
-                <Typography className="selection-subtitle" variant="h5" sx={{ fontFamily: 'DM Sans', fontWeight: 'medium', textAlign: 'center' }} align="center">Total yield in Pakistan for {year}: ...</Typography>
+                {/* <Typography className="selection-subtitle" variant="h5" sx={{ fontFamily: 'DM Sans', fontWeight: 'medium', textAlign: 'center' }} align="center">Total yield in Pakistan for {year}: ...</Typography> */}
             </div>
         </div>
     </>

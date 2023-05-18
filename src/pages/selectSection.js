@@ -5,6 +5,7 @@ import { useSpring, animated } from 'react-spring';
 import Watermark from '../../components/Watermark';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faChartBar } from '@fortawesome/free-solid-svg-icons';
+import MainLogoReal from '../../components/MainLogoReal';
 
 const sections = [
     { name: 'Main', icon: faHome },
@@ -38,7 +39,8 @@ const SelectSection = () => {
     return (<><Watermark />
         <div className="selection-container">
             <div className="selection-inner-container">
-                <img src="https://w7.pngwing.com/pngs/441/849/png-transparent-common-sunflower-cartoon-drawing-blooming-sunflowers-poster-natural-sunflower.png" alt="logo" className="logo" style={{ textAlign: 'center' }} />
+            <MainLogoReal  className="logo" />
+                {/* <img src="https://w7.pngwing.com/pngs/441/849/png-transparent-common-sunflower-cartoon-drawing-blooming-sunflowers-poster-natural-sunflower.png" alt="logo" className="logo" style={{ textAlign: 'center' }} /> */}
                 <animated.div style={fadeIn}>
                     <Typography className="selection-title" variant="h4" style={{ textAlign: 'center' }}>Sunflower Dashboard</Typography>
                     <Typography className="selection-subtitle" variant="h6" style={{ textAlign: 'center' }}>Please select a section to continue</Typography>

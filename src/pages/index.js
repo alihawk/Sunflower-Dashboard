@@ -1,77 +1,80 @@
-import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { Button, Grid, Typography } from '@mui/material';
+import { Card, CardContent, Grid, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { useSpring, animated } from 'react-spring';
-import Watermark from '../../components/Watermark'; // import the Watermark component
+import Watermark from '../../components/Watermark';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHome, faChartBar, faImage } from '@fortawesome/free-solid-svg-icons';
+import MainLogoReal from '../../components/MainLogoReal';
+const sections = [
+    { name: 'Main', icon: faHome },
+    { name: 'Visualization', icon: faChartBar },
+    { name: 'Demo', icon: faImage }, // Update the icon as needed
+];
 
-export default function Index() {
+const SectionCard = styled(Card)`
+  transition: transform 0.2s ease-in-out;
+  cursor: pointer;
+  maxWidth: 300px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1.5rem;
+  font-weight:bold;
+  &:hover,
+  &:focus {
+    transform: scale(1.1);
+  }
+`;
+
+const Index = () => {
     const router = useRouter();
-    const [isLoading, setIsLoading] = useState(true);
+    const { crop, year, city, location } = router.query;
 
-    useEffect(() => {
-        setTimeout(() => {
-            setIsLoading(false);
-        }, 3000); // Change the loading time as desired
-    }, []);
+    const handleSectionSelection = (section) => {
+        if (section === 'Visualization') {
+            router.push(`/selectCrop`);
+
+        }
+        else if (section === 'Demo') {
+            router.push(`/visualization`);
+        } else {
+            router.push(`/main?crop=${crop}&year=${year}&city=${city}&location=${location}&section=${section}`);
+        }
+    };
     const fadeIn = useSpring({
         from: { opacity: 0 },
         to: { opacity: 1 },
         delay: 300,
     });
 
-    const handleCropSelection = (crop) => {
-        router.push(`/select-year?crop=${crop}`);
-    };
-
-    if (isLoading) {
-        return <div>Wait, the tool is loading...</div>;
-    }
-    const CropButton = styled(Button)`
-      transition: transform 0.2s ease-in-out;
-      background-color: black;
-      color:black;
-      &:hover,
-      &:focus {
-        transform: scale(1.1);
-      }
-    `;
-
     return (
-
         <><Watermark />
             <div className="selection-container">
                 <div className="selection-inner-container">
-                    <img src="https://w7.pngwing.com/pngs/441/849/png-transparent-common-sunflower-cartoon-drawing-blooming-sunflowers-poster-natural-sunflower.png" alt="logo" className="logo" />
+                    <MainLogoReal className="logo" />
                     <animated.div style={fadeIn}>
-                        <Typography className="selection-title" variant="h4">Sunflower Dashboard</Typography>
-                        <Typography className="selection-subtitle" variant="h6">Select a crop to continue</Typography>
+                        <Typography className="selection-title" variant="h4" style={{ textAlign: 'center' }}>Sunflower Dashboard</Typography>
+                        <Typography className="selection-subtitle" variant="h6" style={{ textAlign: 'center' }}>Please select a section to continue</Typography>
                     </animated.div>
 
                     <animated.div style={fadeIn}>
-                        <Grid container spacing={2}>
-                            {[
-                                { name: 'Sunflower', logo: 'https://png.pngtree.com/png-clipart/20190417/ourmid/pngtree-yellow-hand-painted-cartoon-sunflower-clipart-png-image_957610.jpg' },
-                                { name: 'Canola', logo: 'https://png.pngtree.com/element_our/20190523/ourmid/pngtree-hand-drawn-canola-flower-cartoon-illustration-image_1082747.jpg' },
-                                { name: 'Soybean', logo: 'https://p7.hiclipart.com/preview/500/524/41/soybean-meal-soy-milk-edamame-food-others.jpg' },
-                            ].map((crop) => (
-                                <Grid key={crop.name} item xs={4}>
-                                    <CropButton
-                                        variant="contained"
-                                        onClick={() => handleCropSelection(crop.name)}
-                                        className="animated-button"
-                                    >
-                                        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-                                            <img src={crop.logo} className="crop-logo" />
-                                            <div>{crop.name}</div>
-                                        </div>
-                                    </CropButton>
+                        <Grid container spacing={2} justifyContent="center">
+                            {sections.map((section) => (
+                                <Grid key={section.name} item xs={4}>
+                                    <SectionCard onClick={() => handleSectionSelection(section.name)} className="animated-button">
+                                        <CardContent sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '80px' }}>
+                                            <FontAwesomeIcon icon={section.icon} size="2x" color="black" />
+                                            <Typography variant="h5" sx={{ textAlign: 'center', fontWeight: 'semibold', fontFamily: 'DM Sans', fontSize: '1.2rem', color: 'rgb(53, 54, 53)' }}>{section.name}</Typography>
+                                        </CardContent>
+                                    </SectionCard>
                                 </Grid>
                             ))}
                         </Grid>
+
                     </animated.div>
                 </div>
             </div>
         </>
     );
-}
+};
+
+export default Index;

@@ -4,8 +4,12 @@ import { styled } from '@mui/system';
 import { Button, Grid, Typography } from '@mui/material';
 import { useSpring, animated } from 'react-spring';
 import Modal from 'react-modal';
+import { FaChartBar, FaChartPie } from "react-icons/fa";
 import CircularProgress from '@mui/material/CircularProgress';
-import Watermark from '../../components/Watermark'; 
+import Watermark from '../../components/Watermark';
+import dynamic from "next/dynamic";
+import MainLogoReal from '../../components/MainLogoReal';
+
 const Container = styled('div')(({ theme }) => ({
     display: 'flex',
     flexDirection: 'column',
@@ -13,6 +17,7 @@ const Container = styled('div')(({ theme }) => ({
     padding: '2rem',
     backgroundColor: '#F1F1F1'
 }));
+
 
 const LoadingContainer = styled('div')({
     display: 'flex',
@@ -100,14 +105,11 @@ export default function Visualization() {
         }, 3000);
     };
 
-
-
-
-
     return (<><Watermark />
         <div className="selection-container">
             <div className="selection-inner-container">
-                <img src="https://w7.pngwing.com/pngs/441/849/png-transparent-common-sunflower-cartoon-drawing-blooming-sunflowers-poster-natural-sunflower.png" alt="logo" className="logo" />
+                {/* <img src="https://w7.pngwing.com/pngs/441/849/png-transparent-common-sunflower-cartoon-drawing-blooming-sunflowers-poster-natural-sunflower.png" alt="logo" className="logo" /> */}
+                <MainLogoReal  className="logo" />
                 <animated.div style={fadeIn}>
                     <Typography className="selection-title" variant="h4">Sunflower Dashboard</Typography>
                     <Typography className="selection-subtitle" variant="h6">Visualize Your Fields</Typography>
@@ -149,6 +151,8 @@ export default function Visualization() {
                 </animated.div>
             </div>
         </div>
-        </>
+
+
+    </>
     );
 }

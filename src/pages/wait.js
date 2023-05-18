@@ -16,9 +16,10 @@ import ChartsPopup from '../../components/ChartsPopup';
 import SoilMoistureWidget from '../../components/SoilMoistureWidget';
 import Watermark from '../../components/Watermark';
 
+import droneimageReal from "../../components/DroneImageReal";
 
-const DynamicPieChart = dynamic(
-  () => import("../../components/Charts/PieChart"),
+const DynamicLineChart = dynamic(
+  () => import("../../components/Charts/LineChart"),
   { ssr: false }
 );
 const DynamicBarChart = dynamic(
@@ -28,7 +29,7 @@ const DynamicBarChart = dynamic(
 const wait = () => {
   const [selectedIndex, setSelectedIndex] = useState(0);
   // Default to RGB layer (index 0)
-  const [selectedDate, setSelectedDate] = useState("2022-06-25");
+  const [selectedDate, setSelectedDate] = useState("2022-10-03");
   const [selectedCropType, setSelectedCropType] = useState("");
   const [showChartsPopup, setShowChartsPopup] = useState(false);
   const [cropHealth, setCropHealth] = useState(80); // %
@@ -44,32 +45,22 @@ const wait = () => {
   const [avgHeadSize, setAvgHeadSize] = useState(20); // cm
   const [maturityDate, setMaturityDate] = useState("2022-08-15");
   const [oilContent, setOilContent] = useState(45); // %
+  const [analysis, setAnalysis] = useState("");
 
   const [headCount, setHeadCount] = useState(750);
-
-
-
-
   const handleRadioChange = (event) => {
     setSelectedIndex(Number(event.target.value));
   };
-
-
   const handleCropTypeChange = (event) => {
     setSelectedCropType(event.target.value);
   };
-
-
-
   const handleDateChange = (event) => {
     setSelectedDate(event.target.value);
     setSelectedCropType("");
-
     if (event.target.value === "2022-07-19") {
       setSelectedCropType("SK");
     }
   };
-
 
   const togglePopup = () => {
     setShowPopup(!showPopup);
@@ -92,6 +83,18 @@ const wait = () => {
       phosphorus: Math.floor(Math.random() * (70 - 30) + 30), // generate random number between 30-70
       potassium: Math.floor(Math.random() * (350 - 200) + 200) // generate random number between 200-350
     });
+  };
+
+  const generateRandomAnalysis = () => {
+    const analysis = [
+      `The estimated yield for the selected date is ${seedYield} kg/ha. Given the head count of ${headCount}, this is a healthy yield. The average head size of ${avgHeadSize} cm indicates robust crop growth. The estimated maturity date is ${maturityDate}, which is ideal for the crop type. The oil content is measured at ${oilContent}%, which falls within the expected range for this crop.`,
+      `The crop yield estimation process takes into account several factors. For the selected date, the head count is at ${headCount}, and the estimated seed yield is ${seedYield} kg/ha. The average head size stands at ${avgHeadSize} cm, indicating healthy growth. The crop is expected to reach maturity by ${maturityDate}. Oil content is also within the expected range at ${oilContent}%.`,
+      `For the chosen date, the estimated yield is ${seedYield} kg/ha. This is calculated based on the head count of ${headCount}. The average head size of ${avgHeadSize} cm suggests that the crop is growing well. The maturity date is estimated to be ${maturityDate}, and the oil content of the crop is ${oilContent}%.`,
+      `The yield estimation process takes into account various parameters. For the selected date, the head count stands at ${headCount}, which is a positive indicator. The estimated seed yield is ${seedYield} kg/ha, and the average head size is ${avgHeadSize} cm, suggesting that the crop is healthy. The crop is expected to mature by ${maturityDate}, and the oil content stands at ${oilContent}%.`
+    ];
+
+    const index = Math.floor(Math.random() * analysis.length);
+    return analysis[index];
   };
 
   const getRandomLatLong = () => {
@@ -129,44 +132,25 @@ const wait = () => {
     setLocation(getRandomLocation());
     setCoordinates(getRandomLatLong());
     setCropHealth(Math.floor(Math.random() * (100 - 70) + 70)); // generate random number between 70-100
-    setHeadCount(Math.floor(Math.random() * (800 - 600) + 600)); // generate random number between 600-800
+    setHeadCount(Math.floor(Math.random() * (800 - 600) + 600));
+    setAnalysis(generateRandomAnalysis());// generate random number between 600-800
   }, [selectedDate]);
 
-
-
-  // const renderOutput = () => {
-  //   if (
-  //     selectedDate === "2022-06-25" ||
-  //     selectedDate === "2022-07-06" ||
-  //     selectedDate === "2022-07-19" ||
-  //     selectedDate === "2022-07-19" ||
-  //     selectedDate === "2022-07-19"
-  //   ) {
-  //     return (
-  //       <div>
-  //         <h2 className="text-xl ">Head Count:        {headCount && headCount}</h2>
-  //         <h2 className="text-xl ">Seed Yield:        {seedYield} kg/ha</h2>
-  //         <h2 className="text-xl ">Average Head Size: {avgHeadSize} cm</h2>
-  //         <h2 className="text-xl ">Maturity Date:     {maturityDate}</h2>
-  //         <h2 className="text-xl ">Oil Content:       {oilContent}%</h2>
-
-  //       </div>)
-  //   }
-  //   return null;
-  // }
 
 
   const layers = [
     { name: "RGB", layer: "NDVI" },
     { name: "NIR", layer: "AVI" },
+    { name: "SVG", layer: "AVI" },
 
   ];
   const dates = [
-    { date: "2022-06-25" },
-    { date: "2022-07-06" },
-    { date: "2022-07-19" },
-    { date: "2022-08-27" },
-    { date: "2022-09-10" },
+    { date: "2022-10-03" },
+    { date: "2022-10-28" },
+    { date: "2022-11-10" },
+    { date: "2023-03-05" },
+    { date: "2023-03-28" },
+    { date: "2023-05-19" },
   ];
   const cropTypes = [{ name: "" }, { name: "SK" }];
   const [location, setLocation] = useState(getRandomLocation());
@@ -174,7 +158,10 @@ const wait = () => {
 
 
   return (
-    <><Watermark />
+
+    <>
+
+      <Watermark />
       <BaseLayout title="Home" footer={false}>
         <Head>
           <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
@@ -182,7 +169,7 @@ const wait = () => {
         <div className="content-container">
           <div className="flex flex-col md:flex-row md:items-start">
             <div className="w-full md:w-2/3">
-              <div className="cardsWrapper w-full flex space-x-9  z-20 relative">
+              <div className="cardsWrapper w-full flex space-x-9  z-20 relative cardsPosition">
                 <Card title={"Charts"} icon="chart" onClick={toggleChartsPopup} />
                 <Card title={"Drone Information"} icon="drone" onClick={toggleDroneInfoPopup} />
                 <Card title={"Statistics"} icon="statistics" onClick={togglePopup} />
@@ -260,7 +247,7 @@ const wait = () => {
                     <FaChartBar className=" mainHeadingText  inline-block mr-2" />
                     Crop Yield
                   </h3>
-                  <DynamicBarChart className='dateLayerbox  bg-black' />
+                  < DynamicLineChart className='dateLayerbox  bg-black' />
                 </div>
               </div>
 
@@ -272,6 +259,7 @@ const wait = () => {
           padding-top: 64px;
           position: relative;
           height: calc(100vh - 64px);
+          
         }
         .cards-container {
           z-index: 20;
@@ -280,6 +268,7 @@ const wait = () => {
         .controls-container {
           z-index: 20;
           position: relative;
+          flex-wrap: wrap;
           
           border-radius: 8px; /* Rounded borders */
           padding: 1rem; /* Add padding to make the container smaller */
@@ -305,6 +294,7 @@ const wait = () => {
             oilContent={oilContent}
             seedYield={seedYield}
             headCount={headCount}
+            analysisTe={analysis} // New line
           />
         )}
 
@@ -314,7 +304,7 @@ const wait = () => {
             onClose={toggleDroneInfoPopup}
             droneSensor="Sensor XYZ"
             droneName="Drone ABC"
-            droneImage="https://media.istockphoto.com/id/911190112/photo/quadcopter-drone-with-4k-video-camera-flying-in-the-air.jpg?s=612x612&w=0&k=20&c=Dt8mbQjRDI09sl_Q2gaEdw88dDHi2627FzeKcXu0DOw="
+            droneImage={droneimageReal}
           />
         )}
         {showChartsPopup && (

@@ -21,13 +21,23 @@ body {
     color: #1b5155;
 }
 
+.styled-select {
+    color: black;
 
+    background-color: white;
+    border: none;
 
-.slider-item {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 3px;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.15);
+    margin-top: 5px;
+    outline: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
 }
+
 
 .opacity-label,
 .slider-label {
@@ -55,8 +65,9 @@ body {
 .slider-container {
     position: fixed;
     bottom: 50px;
+
     /* Adjust as needed */
-    left: 50%;
+    left: 45%;
     transform: translateX(-50%);
     z-index: 1000;
     display: flex;
@@ -86,6 +97,10 @@ body {
     align-items: center;
 }
 
+.cardsPosition {
+    margin-left: 17px;
+}
+
 .slider-label {
     font-size: 1.2rem;
     color: #4a5568;
@@ -100,6 +115,7 @@ body {
     appearance: none;
     cursor: pointer;
     transition: all 0.3s ease;
+    margin-top: 20px;
 }
 
 .range-input::-webkit-slider-thumb {
@@ -165,7 +181,7 @@ body {
     font-size: 1.2rem;
     align-items: center;
     justify-content: center;
-    background-color: #bac9bb;
+    background-color: #F9C860;
     color: rgb(53, 54, 53);
 
     flex-direction: column;
@@ -173,6 +189,10 @@ body {
     padding: 20px;
     text-align: center;
 
+}
+
+.cardscolor {
+    background-color: #afa7a7;
 }
 
 .animated-button:hover {
@@ -194,7 +214,10 @@ body {
 }
 
 .confirmButton {
-    background-color: #adac65;
+    background-color: #F9C860;
+    color: black;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.0rem;
 }
 
 .card-container {
@@ -259,6 +282,7 @@ h5 {
     padding: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     border-radius: 12px;
+    margin-top: 20px;
 }
 
 .texts-slider {
@@ -271,4 +295,246 @@ h5 {
 
 .fa-icon {
     margin-bottom: 10px;
+}
+
+.input-field {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    /* Add this line */
+    margin-right: 6rem;
+    margin-left: 6rem;
+    margin-bottom: 1rem;
+    width: 300px;
+}
+
+
+.input-field label {
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+.input-field input {
+    padding: 0.5rem 1rem;
+    border: 2px solid #cccccc;
+    border-radius: 25px;
+    font-size: 1rem;
+}
+
+
+.input-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-bottom: 1rem;
+}
+
+.input-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.file-upload-label,
+.file-upload-input {
+    cursor: pointer;
+    display: block;
+    text-align: center;
+}
+
+.file-upload-label {
+    font-weight: bold;
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    background-color: #4a5568;
+    color: white;
+    border-radius: 25px;
+}
+
+.file-upload-input {
+    display: none;
+}
+
+.file-upload-placeholder {
+    font-size: 0.9rem;
+    color: #4a5568;
+    margin-top: 0.5rem;
+    text-align: center;
+}
+
+.selected-image {
+    width: 100%;
+    max-width: 900px;
+    height: auto;
+    margin-top: 1rem;
+}
+
+.submit-button {
+    background-color: #4a5568;
+    color: white;
+    padding: 0.5rem 2rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border-radius: 25px;
+    margin-top: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.submit-button:hover {
+    background-color: #2d3748;
+}
+
+.selection-inner-container-analysis {
+    width: 80%;
+    max-width: 1000px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    background-color: #f9f9f9;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    /* other styles remain the same */
+}
+
+.analysis-heading {
+    font-weight: bold;
+    font-family: 'DM Sans', sans-serif;
+    margin-bottom: 0.5rem;
+}
+
+.image-container {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    margin: 2rem 0;
+    cursor: pointer;
+}
+
+.analyzed-image {
+    object-fit: contain !important;
+}
+
+.analysis-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.analysis-field {
+    width: 48%;
+    /* This will take almost half the width, leaving some space for margins */
+    margin-bottom: 10px;
+}
+
+
+.button-container {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.save-button,
+.discard-button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.save-button {
+    background-color: #4caf50;
+    color: white;
+}
+
+.discard-button {
+    background-color: #f44336;
+    color: white;
+}
+
+.modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    position: relative;
+    margin: auto;
+    padding: 0;
+    width: 90%;
+    max-width: 1200px;
+}
+
+.close {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    color: #fff;
+    font-size: 35px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: #bbb;
+}
+
+.modal-image-container {
+    position: relative;
+    width: 100%;
+    height: 80vh;
+}
+
+.modal-image {
+    object-fit: contain !important;
+}
+
+.loader-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    flex-direction: column;
+    /* Add this to stack items vertically */
+}
+
+.loader {
+    border: 16px solid #f3f3f3;
+    border-top: 16px solid #3498db;
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+    margin-bottom: 20px;
+    /* Add some space between the loader and the text */
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
