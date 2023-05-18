@@ -1,5 +1,5 @@
 import React from 'react';
-import DroneImageReal from '../components/droneImageReal';
+import DroneImageReal from '../components/DroneImageReal';
 
 const DroneInfoPopup = ({ onClose, droneSensor, droneName, droneCompany, wingSpan }) => {
   droneSensor = "Sentera 4K Double Sensor";
