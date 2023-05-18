@@ -6,18 +6,13 @@ import { FaChartBar, FaChartLine, FaChartPie, FaChartArea } from "react-icons/fa
 import Biaxial from "../../components/Charts/Biaxial";
 
 const DynamicBarChart = dynamic(
-  () => import("../../components/Charts/BarChart"),
+  () => import("../../components/Charts/Barchart"),
   { ssr: false }
 );
 const DynamicLineChart = dynamic(
-  () => import("../../components/Charts/LineChart"),
+  () => import("../../components/Charts/Linechart"),
   { ssr: false }
 );
-// const DynamicPieChart = dynamic(
-//   () => import("../../components/Charts/PieChart"),
-//   { ssr: false }
-// );
-
 
 const Charts = () => {
   return (
