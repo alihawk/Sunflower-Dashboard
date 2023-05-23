@@ -1,23 +1,8 @@
-import { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTint } from "@fortawesome/free-solid-svg-icons";
 
-function SoilMoistureWidget({ lat, lon }) {
-    const [soilMoisture, setSoilMoisture] = useState(null);
-
-    useEffect(() => {
-        const generateRandomSoilMoisture = () => {
-            // Generate a random value between 0 and 100
-            const randomValue = Math.floor(Math.random() * 101);
-            setSoilMoisture(randomValue);
-        };
-
-        if (lat && lon) {
-            generateRandomSoilMoisture();
-        }
-    }, [lat, lon]);
-
-    if (soilMoisture === null) return null;
+function SoilMoistureWidget() {
+    const soilMoisture = 75; // Here is the hardcoded value
 
     return (
         <div className="widget-container">

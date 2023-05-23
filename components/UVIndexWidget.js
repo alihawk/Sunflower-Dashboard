@@ -1,25 +1,8 @@
-import { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSun } from "@fortawesome/free-solid-svg-icons";
 
-function UVIndexWidget({ lat, lon }) {
-  const [uvIndex, setUvIndex] = useState(null);
-
-  useEffect(() => {
-    const fetchUVIndex = async () => {
-      const response = await fetch(
-        `https://api.openweathermap.org/data/2.5/uvi?lat=${lat}&lon=${lon}&appid=${process.env.NEXT_PUBLIC_OPEN_WEATHER_API_KEY}`
-      );
-      const data = await response.json();
-      setUvIndex(data.value);
-    };
-
-    if (lat && lon) {
-      fetchUVIndex();
-    }
-  }, [lat, lon]);
-
-  if (uvIndex === null) return null;
+function UVIndexWidget() {
+  const uvIndex = 5; // Hardcoded UV Index value
 
   return (
     <div className="widget-container">

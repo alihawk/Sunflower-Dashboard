@@ -64,7 +64,7 @@ export default function Map({ selectedLayer, date, cropType }) {
 
 
 
-  if ((date === "2022-10-03" || date === "2023-05-19") && cropType === "") {
+  if ((date === "2022-10-03" || date === "2022-12-19") && cropType === "") {
     overlayUrl = "mosaics/NDVI220625.png";
     overlayBounds = [
       [33.6739078, 73.1278275],
