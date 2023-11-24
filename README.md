@@ -1,5 +1,6 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
-
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app). This is Just code for the frontend Web Module of the extensive ML and CV project that is basically used to 
+automate and enhance the cooking oil production by using smart farming and precision agriculture techniques on Sunflower Crops.
+ 
 ## Getting Started
 
 First, run the development server:
