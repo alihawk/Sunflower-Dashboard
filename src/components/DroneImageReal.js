@@ -6,7 +6,7 @@ import { Card, CardContent, Grid, Typography, Box } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
 
-import droneImage from "../src/pages/logos/droneImage.png";
+import droneImage from "@/assets/images/droneImage.png";
 export default function DroneImageReal(props) {
     return (
         <div >

@@ -4,9 +4,9 @@ import { Button, Typography, FormControl, Select, MenuItem } from '@mui/material
 import { styled } from '@mui/material/styles';
 import { useSpring, animated } from 'react-spring';
 import Box from '@mui/material/Box';
-import Watermark from '../../components/Watermark';
-import mainLogo from './logos/mainlogo.png'; // Import your logo image here
-import MainLogoReal from '../../components/MainLogoReal';
+import Watermark from '@/components/Watermark';
+import mainLogo from '@/assets/images/mainlogo.png'; // Import your logo image here
+import MainLogoReal from '@/components/MainLogoReal';
 
 const years = [...Array(15).keys()].map((i) => 2009 + i);
 

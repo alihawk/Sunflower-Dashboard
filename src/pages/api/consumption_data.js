@@ -1,4 +1,4 @@
-const { generateFourMonthsData, generateSevenDaysData, generateOneMonthData } = require('../../../utils/GenerateConsumptionData');
+const { generateFourMonthsData, generateSevenDaysData, generateOneMonthData } = require('../../utils/GenerateConsumptionData');
 const { NextApiResponse, NextApiRequest } = require('next')
 
 

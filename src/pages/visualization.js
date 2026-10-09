@@ -6,9 +6,9 @@ import { useSpring, animated } from 'react-spring';
 import Modal from 'react-modal';
 import { FaChartBar, FaChartPie } from "react-icons/fa";
 import CircularProgress from '@mui/material/CircularProgress';
-import Watermark from '../../components/Watermark';
+import Watermark from '@/components/Watermark';
 import dynamic from "next/dynamic";
-import MainLogoReal from '../../components/MainLogoReal';
+import MainLogoReal from '@/components/MainLogoReal';
 
 const Container = styled('div')(({ theme }) => ({
     display: 'flex',

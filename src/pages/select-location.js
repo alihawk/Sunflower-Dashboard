@@ -2,8 +2,8 @@ import { useRouter } from 'next/router';
 import { Card, CardContent, Grid, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { useSpring, animated } from 'react-spring';
-import Watermark from '../../components/Watermark';
-import MainLogoReal from '../../components/MainLogoReal';
+import Watermark from '@/components/Watermark';
+import MainLogoReal from '@/components/MainLogoReal';
 
 const locations = [
     'Location 1',

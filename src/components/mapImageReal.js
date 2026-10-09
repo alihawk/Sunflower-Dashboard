@@ -6,7 +6,7 @@ import { Card, CardContent, Grid, Typography, Box } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
 
-import mypic from "../src/pages/logos/mypic.png";
+import mypic from "@/assets/images/mypic.png";
 export default function mapImageReal(props) {
     return (
         <div >

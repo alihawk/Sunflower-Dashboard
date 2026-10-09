@@ -1,25 +1,25 @@
 import Head from "next/head";
-import Map from "../../components/Home";
+import Map from "@/components/Home";
 import React, { useEffect, useState } from "react";
-import BaseLayout from "../../components/BaseLayout/BaseLayout";
+import BaseLayout from "@/components/BaseLayout/BaseLayout";
 import dynamic from "next/dynamic";
 import { FaChartBar, FaChartPie } from "react-icons/fa";
-import Card from "../../components/card";
-import WeatherWidget from '../../components/WeatherWidget';
-import HumidityWidget from '../../components/HumidityWidget';
-import UVIndexWidget from '../../components/UVIndexWidget';
-import CropHealthWidget from "../../components/CropHealthWidget";
-import HeadCountWidget from "../../components/HeadCountWidget";
-import StatisticsPopup from "../../components/StatisticsPopup";
-import DroneInfoPopup from '../../components/DroneInfoPopup';
-import ChartsPopup from '../../components/ChartsPopup';
-import SoilMoistureWidget from '../../components/SoilMoistureWidget';
-import Watermark from '../../components/Watermark';
+import Card from "@/components/card";
+import WeatherWidget from '@/components/WeatherWidget';
+import HumidityWidget from '@/components/HumidityWidget';
+import UVIndexWidget from '@/components/UVIndexWidget';
+import CropHealthWidget from "@/components/CropHealthWidget";
+import HeadCountWidget from "@/components/HeadCountWidget";
+import StatisticsPopup from "@/components/StatisticsPopup";
+import DroneInfoPopup from '@/components/DroneInfoPopup';
+import ChartsPopup from '@/components/ChartsPopup';
+import SoilMoistureWidget from '@/components/SoilMoistureWidget';
+import Watermark from '@/components/Watermark';
 
-import droneimageReal from "../../components/DroneImageReal";
+import droneimageReal from "@/components/DroneImageReal";
 
 const DynamicLineChart = dynamic(
-  () => import("../../components/Charts/Linechart"),
+  () => import("@/components/Charts/Linechart"),
   { ssr: false }
 );
 

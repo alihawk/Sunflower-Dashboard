@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-const {TableGeneratorFunction} = require ('../../../utils/TableGeneratorFunction');
+const {TableGeneratorFunction} = require ('../../utils/TableGeneratorFunction');
 
 const handler = (req, res) => {
   let temp_data = TableGeneratorFunction();

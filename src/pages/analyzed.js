@@ -1,8 +1,8 @@
 // analyzed.js
 import { useRouter } from 'next/router';
 import { useState } from 'react';
-import MainLogoReal from '../../components/MainLogoReal';
-import Watermark from '../../components/Watermark';
+import MainLogoReal from '@/components/MainLogoReal';
+import Watermark from '@/components/Watermark';
 import { Typography, Snackbar, Alert, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Button } from '@mui/material';
 import Image from 'next/image';
 
