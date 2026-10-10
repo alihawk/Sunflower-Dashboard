@@ -1,6 +1,6 @@
 import React from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
-import Sunflower from '../components/Sunflower';
+import Sunflower from '@/components/Sunflower';
 const sunflowerImageUrl = 'https://images.unsplash.com/photo-1597848212624-a19eb35e2651?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8&w=1000&q=80'; // Replace with your sunflower image URL
 
 const StatisticsPopup = ({ avgHeadSize, maturityDate, oilContent, seedYield, headCount, analysisTe, onClose }) => {

@@ -3,9 +3,9 @@ import { useSpring, animated } from 'react-spring';
 import { useRouter } from 'next/router';
 import { Card, CardContent, Grid, Typography, Box } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import MapImageReal from '../../components/mapImageReal';
-import Watermark from '../../components/Watermark';
-import MainLogoReal from '../../components/MainLogoReal';
+import MapImageReal from '@/components/mapImageReal';
+import Watermark from '@/components/Watermark';
+import MainLogoReal from '@/components/MainLogoReal';
 <MainLogoReal className="logo" />
 const cities = [
     'Lahore',

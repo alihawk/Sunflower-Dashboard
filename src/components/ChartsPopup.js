@@ -1,5 +1,5 @@
 import React from "react";
-import Charts from "../src/pages/charts.js";
+import Charts from "@/pages/charts.js";
 
 const ChartsPopup = ({ onClose }) => {
     return (

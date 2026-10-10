@@ -2,10 +2,10 @@ import { useRouter } from 'next/router';
 import { Card, CardContent, Grid, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { useSpring, animated } from 'react-spring';
-import Watermark from '../../components/Watermark';
+import Watermark from '@/components/Watermark';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faChartBar } from '@fortawesome/free-solid-svg-icons';
-import MainLogoReal from '../../components/MainLogoReal';
+import MainLogoReal from '@/components/MainLogoReal';
 
 const sections = [
     { name: 'Main', icon: faHome },

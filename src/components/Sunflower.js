@@ -6,13 +6,13 @@ import { Card, CardContent, Grid, Typography, Box } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
 
-import mainlogo from "../src/pages/logos/mainlogo.png";
-export default function MainLogoReal(props) {
+import sunflowerfields from "@/assets/images/sunflowerfields.png";
+export default function Sunflower(props) {
     return (
         <div >
             <Image
-                src={mainlogo}
-                className="logo"
+                src={sunflowerfields}
+
             />
         </div>
     );

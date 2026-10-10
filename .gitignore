@@ -34,3 +34,10 @@ yarn-error.log*
 #public
 # /public/mosaics
 /public/shapes
+
+# env files (any, not just *.local)
+.env
+.env.*
+
+# notebooks
+.ipynb_checkpoints/

@@ -4,8 +4,8 @@ import { styled } from '@mui/system';
 import { Typography } from '@mui/material';
 import { useSpring, animated } from 'react-spring';
 import Modal from 'react-modal';
-import Watermark from '../../components/Watermark';
-import MainLogoReal from '../../components/MainLogoReal';
+import Watermark from '@/components/Watermark';
+import MainLogoReal from '@/components/MainLogoReal';
 
 const Container = styled('div')(({ theme }) => ({
     display: 'flex',

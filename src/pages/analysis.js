@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import { useState } from 'react';
-import MainLogoReal from '../../components/MainLogoReal';
-import Watermark from '../../components/Watermark';
+import MainLogoReal from '@/components/MainLogoReal';
+import Watermark from '@/components/Watermark';
 import { Card, CardContent, Grid, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { useEffect } from 'react';

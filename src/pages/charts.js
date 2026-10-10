@@ -1,16 +1,16 @@
 import dynamic from "next/dynamic";
-import BaseLayout from "../../components/BaseLayout/BaseLayout";
+import BaseLayout from "@/components/BaseLayout/BaseLayout";
 import { FaChartBar, FaChartLine, FaChartPie, FaChartArea } from "react-icons/fa";
 
 
-import Biaxial from "../../components/Charts/Biaxial";
+import Biaxial from "@/components/Charts/Biaxial";
 
 const DynamicBarChart = dynamic(
-  () => import("../../components/Charts/Barchart"),
+  () => import("@/components/Charts/Barchart"),
   { ssr: false }
 );
 const DynamicLineChart = dynamic(
-  () => import("../../components/Charts/Linechart"),
+  () => import("@/components/Charts/Linechart"),
   { ssr: false }
 );
 

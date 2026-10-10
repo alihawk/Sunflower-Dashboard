@@ -3,7 +3,7 @@ import "@/styles/globals.css";
 import React, { useState, useEffect } from 'react';
 import { CircularProgress, Backdrop, Box } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import LoaderLogo from '../../components/LoaderLogo';
+import LoaderLogo from '@/components/LoaderLogo';
 
 const StyledBackdrop = styled(Backdrop)(({ theme }) => ({
   background: 'linear-gradient( 107deg, rgba(13,198,180,1) 8.1%, rgba(33,198,138,1) 79.5% )',
